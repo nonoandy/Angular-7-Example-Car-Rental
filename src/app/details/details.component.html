@@ -1,0 +1,30 @@
+<div class="card-rows">
+
+  <div class="card" *ngFor="let item of details">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-8">
+          <h5 class="card-title">
+            {{item.name}}
+            <span class="badge"><i class="fa fa-chair"></i> {{item.seats}}</span>
+          </h5>
+          <p class="card-text">
+            <span class="badge"><i class="fa fa-car"></i> {{item.car_Type}}</span>
+            <span class="badge"><i class="fa fa-cogs"></i> {{item.transmission}}</span>
+            <span class="badge"><i class="fa fa-gas-pump"></i> {{item.fuel_Type}}</span>
+            <br>
+            <br>
+            <app-weekstatus [data]="item.availability"></app-weekstatus>
+          </p>
+        </div>
+        <div class="col-sm-4 text-right">
+          <a href="#" class="btn btn-primary">
+            <img class="" src="{{item.photo}}" alt="{{item.name}}" width="100%">
+            Book @ <em>₹{{item.price}}</em>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
