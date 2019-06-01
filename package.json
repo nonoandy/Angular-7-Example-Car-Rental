@@ -2,14 +2,17 @@
   "name": "app",
   "version": "0.1.0",
   "license": "MIT",
+  "engines": {
+    "node": "11.x"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "node server.js",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href /app/"
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
