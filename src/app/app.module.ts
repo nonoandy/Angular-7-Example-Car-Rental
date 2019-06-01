@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { WeekStatusComponent } from './weekstatus/weekstatus.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { WeekStatusComponent } from './weekstatus/weekstatus.component';
     HeaderComponent,
     HomeComponent,
     DetailsComponent,
-    WeekStatusComponent
+    WeekStatusComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+// Displays the week days and higlights the passed ones
 @Component({
   selector: 'app-weekstatus',
   templateUrl: './weekstatus.component.html',
