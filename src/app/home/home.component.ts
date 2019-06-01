@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../core/api.service';
 
@@ -18,10 +19,22 @@ export class HomeComponent implements OnInit {
     start_date: new FormControl(new Date().toISOString().substring(0, 10), Validators.required)
   });
 
-  constructor(private fb: FormBuilder, private api: ApiService) { }
+  constructor(private router: Router, private fb: FormBuilder, private api: ApiService) { }
 
   ngOnInit() {
     this.api.getLocations().subscribe(res => this.locations = res);
+  }
+
+  onSubmit(form) {
+    if (this.searchCarForm.valid) {
+      const path = [
+        'details',
+        this.searchCarForm.controls.location.value,
+        this.searchCarForm.controls.start_date.value
+      ];
+
+      this.router.navigate(path);
+    }
   }
 
 }

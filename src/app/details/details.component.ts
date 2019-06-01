@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../core/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import * as _ from 'lodash';
+import { ApiService } from '../core/api.service';
 
 @Component({
   selector: 'app-details',
@@ -9,6 +9,10 @@ import * as _ from 'lodash';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
+
+  locations;
+  location_input;
+  start_date_input;
 
   query_input = '';
 
@@ -24,18 +28,52 @@ export class DetailsComponent implements OnInit {
   sort_by = ['Sort', 'Price: Low to High', 'Price: High to Low'];
   sort_by_input = this.sort_by[0];
 
+  // Original data
   details: any;
 
+  // Filtered items
   items: any[] = [];
   page = 1;
 
-  constructor(private api: ApiService) { }
+  // Todays alpha 3 letter day for comparsion
+  day = (new Date()).toLocaleDateString('en', { weekday: 'short' }).toLowerCase();
+
+  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
-    this.api.getDetails().subscribe((res) => {
+    this.api.getLocations().subscribe(res => this.locations = res);
+
+    this.location_input = this.route.snapshot.params['location'];
+    this.start_date_input = this.route.snapshot.params['start_date'];
+
+    this.refreshDetails();
+  }
+
+  onChangeLocation($event) {
+    this.refreshDetails();
+  }
+
+  onChangeStartDate($event) {
+    this.refreshDetails();
+  }
+
+  refreshDetails() {
+    const path = [
+      'details',
+      this.location_input,
+      this.start_date_input
+    ];
+
+    this.router.navigate(path);
+
+    this.api.getDetailsFor(this.location_input).subscribe((res) => {
       this.details = res;
 
-      this.filter();
+      for (const item of this.details) {
+        item.selected = false;
+      }
+
+      this.refreshItems();
     });
   }
 
@@ -73,7 +111,7 @@ export class DetailsComponent implements OnInit {
     }
 
     if (this.car_type_input && this.car_type_input !== this.car_type[0]) {
-      newItems = newItems.filter(x => x['car_Type'] === this.trans_type_input);
+      newItems = newItems.filter(x => x['car_Type'] === this.car_type_input);
     }
 
     if (this.fuel_type_input && this.fuel_type_input !== this.fuel_type[0]) {
@@ -121,6 +159,31 @@ export class DetailsComponent implements OnInit {
           break;
       }
     }
+
+    this.items.sort((x: any, y: any) => {
+      const xn = +this.isAvailable(x);
+      const yn = +this.isAvailable(y);
+
+      if (xn > yn) {
+        return -1;
+      }
+      if (xn < yn) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  refreshItems() {
+    this.filter();
+    this.sort();
+  }
+
+  isAvailable(item) {
+    if (item && item['availability'] && item['availability'].toLowerCase().indexOf(this.day) > -1) {
+      return true;
+    }
+    return false;
   }
 
 }

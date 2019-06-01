@@ -3,6 +3,25 @@
     <div class="lead">
       <form class="form-group" novalidate>
         <div class="input-group">
+          <select class="form-control col-lg-6" placeholder="Location" [(ngModel)]="location_input"
+            (change)="onChangeLocation($event)" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let item of locations" [value]="item">
+              {{item}}
+            </option>
+          </select>
+          <input type="date" class="form-control col-lg-4" placeholder="Start date" [(ngModel)]="start_date_input"
+            (keyup)="onChangeStartDate($event)" [ngModelOptions]="{standalone: true}">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-10 offset-lg-1 col-md-12 text-center">
+    <div class="lead">
+      <form class="form-group" novalidate>
+        <div class="input-group">
 
           <input type="text" class="form-control" placeholder="Search" [(ngModel)]="query_input"
             (keyup)="onChangeQuery($event)" [ngModelOptions]="{standalone: true}" />
@@ -43,7 +62,8 @@
 
 <div class="card-rows">
 
-  <div class="card" *ngFor="let item of items | paginate: { itemsPerPage: 6, currentPage: page }">
+  <div class="card" *ngFor="let item of items | paginate: { itemsPerPage: 6, currentPage: page }"
+    [class.bg-secondary]="item.selected">
     <div class="card-body">
       <div class="row">
         <div class="col-sm-4">
@@ -64,10 +84,13 @@
           </p>
         </div>
         <div class="col-sm-2 text-center">
-          <br>
           <h3 class="text-green">₹{{item.price}}</h3>
-          <br>
-          <a href="#" class="btn btn-primary btn-block">Book</a>
+          <button *ngIf="isAvailable(item)" href="#" class="btn btn-primary btn-block"><i class="fa fa-key"></i>
+            Book</button>
+          <span *ngIf="!isAvailable(item)" class="btn btn-danger btn-sm"><i class="fa fa-times-circle"></i>
+            NOT<br>AVAILABLE</span>
+          <button [disabled]="!isAvailable(item)" (click)="item.selected = !item.selected"
+            class="btn btn-secondary btn-block">{{item.selected ? 'Clear' : 'Select'}}</button>
         </div>
       </div>
     </div>

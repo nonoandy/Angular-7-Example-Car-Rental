@@ -36,6 +36,10 @@ import { WeekStatusComponent } from './weekstatus/weekstatus.component';
       {
         path: 'details',
         component: DetailsComponent
+      },
+      {
+        path: 'details/:location/:start_date',
+        component: DetailsComponent
       }
     ], { useHash: false }),
 

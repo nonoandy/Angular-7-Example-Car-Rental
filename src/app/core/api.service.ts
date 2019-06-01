@@ -29,6 +29,19 @@ export class ApiService {
       });
   }
 
+  getDetailsFor(location): Observable<any> {
+    return this.getJSON()
+      .map((res) => {
+        const r = [];
+        for (const item of res) {
+          if (item['location'] === location) {
+            r.push(item);
+          }
+        }
+        return r;
+      });
+  }
+
   getLocations(): Observable<any> {
     return this.getJSON()
       .map((res) => {
