@@ -23,36 +23,39 @@ import { FooterComponent } from './footer/footer.component';
     WeekStatusComponent,
     FooterComponent
   ],
+
   imports: [
     BrowserModule,
-
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: HomeComponent
-      },
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'details',
-        component: DetailsComponent
-      },
-      {
-        path: 'details/:location/:start_date',
-        component: DetailsComponent
-      }
-    ], { useHash: false }),
-
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
+    // Routes
+    RouterModule.forRoot([
+      { // /
+        path: '',
+        component: HomeComponent
+      },
+      { // home
+        path: 'home',
+        component: HomeComponent
+      },
+      { // details
+        path: 'details',
+        component: DetailsComponent
+      },
+      { // details with params
+        path: 'details/:location/:start_date',
+        component: DetailsComponent
+      }
+    ], { useHash: false })
   ],
+
   providers: [
     ApiService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,17 +1,19 @@
 Car Rental
 ---
 
-### Heroku
-
-Project is auto-deployed to Heroku using Github integration.
-Live at https://car-rental.herokuapp.com/
-
 ### Details
 
 The project is built using Angular 7.
 All the tasks asked are implemented successfully.
 
-### Setup
+### Hosting
+
+[![Heroku](https://heroku-badge.herokuapp.com/?app=car-rental)]
+
+Project is auto-deployed to Heroku using Github integration.
+Live at https://car-rental.herokuapp.com/
+
+### Running
 
 For debugging, 
 ```
@@ -24,6 +26,14 @@ For live,
 npm install
 npm run postinstall
 npm run start
+```
+
+### Testing
+
+```
+npm install
+npm run test
+npm run e2e
 ```
 
 ### Screenshots
