@@ -8,7 +8,7 @@ All the tasks asked are implemented successfully.
 
 ### Hosting
 
-[![Heroku](https://heroku-badge.herokuapp.com/?app=car-rental)]
+![Heroku](https://heroku-badge.herokuapp.com/?app=car-rental)
 
 Project is auto-deployed to Heroku using Github integration.
 Live at https://car-rental.herokuapp.com/
@@ -35,6 +35,7 @@ npm install
 npm run test
 npm run e2e
 ```
+![Testing](screenshots/1t.jpg?raw=true "Testing")
 
 ### Screenshots
 
