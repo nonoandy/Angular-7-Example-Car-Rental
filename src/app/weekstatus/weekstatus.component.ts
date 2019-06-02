@@ -17,7 +17,7 @@ export class WeekStatusComponent implements OnInit {
   }
 
   getClassFor(weekday) {
-    if (weekday && this.data.indexOf(weekday) > -1) {
+    if (weekday && this.data && this.data.indexOf(weekday) > -1) {
       return 'badge badge-success';
     }
     return 'badge';

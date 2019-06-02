@@ -58,11 +58,11 @@ export class DetailsComponent implements OnInit {
   }
 
   refreshDetails() {
-    const path = [
-      'details',
-      this.location_input,
-      this.start_date_input
-    ];
+    let path = ['details'];
+
+    if (this.location_input && this.location_input.length > 0) {
+      path = ['details', this.location_input, this.start_date_input];
+    }
 
     this.router.navigate(path);
 

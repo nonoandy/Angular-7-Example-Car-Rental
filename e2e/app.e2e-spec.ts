@@ -1,14 +1,14 @@
 import { AppPage } from './app.po';
 
-describe('angular-app-starterkit App', () => {
+describe('app', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should contain copyright', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getText()).toContain('© 2019 Car Rental Inc.');
   });
 });
