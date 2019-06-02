@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +17,7 @@ export class ApiService {
   }
 
   public getJSON(): Observable<any> {
-    return this.http.get('./assets/data.json');
+    return this.http.get(environment.api);
   }
 
   getDetails(): Observable<any> {
