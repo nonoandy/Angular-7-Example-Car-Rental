@@ -1,17 +1,5 @@
-Car Rental
+Angular 7 Example: Car Rental
 ---
-
-### Details
-
-The project is built using Angular 7.
-All the tasks asked are implemented successfully.
-
-### Hosting
-
-![Heroku](https://heroku-badge.herokuapp.com/?app=car-rental)
-
-Project is auto-deployed to Heroku using Github integration.
-Live at https://car-rental.herokuapp.com/
 
 ### Running
 
